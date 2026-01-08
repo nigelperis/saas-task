@@ -46,11 +46,20 @@ async function loadTasks() {
 }
 
 async function createTask() {
-  const title = document.getElementById("title").value;
-  const description = document.getElementById("description").value;
-  const status = document.getElementById("status").value;
+  const titleInput = document.getElementById("title");
+  const descInput = document.getElementById("description");
+  const statusInput = document.getElementById("status");
 
-  await fetch(`${CONFIG.API_URL}/tasks`, {
+  const title = titleInput.value.trim();
+  const description = descInput.value.trim();
+  const status = statusInput.value;
+
+  if (!title) {
+    alert("Task title is required");
+    return;
+  }
+
+  const res = await fetch(`${CONFIG.API_URL}/tasks`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -59,8 +68,20 @@ async function createTask() {
     body: JSON.stringify({ title, description, status }),
   });
 
-  document.getElementById("title").value = "";
-  document.getElementById("description").value = "";
+  if (res.status === 403) {
+    alert("Free plan limit reached (5 tasks). Upgrade to Pro.");
+    return;
+  }
+
+  if (!res.ok) {
+    alert("Failed to create task");
+    return;
+  }
+
+  titleInput.value = "";
+  descInput.value = "";
+  statusInput.value = "TODO";
+
   loadTasks();
 }
 

@@ -17,6 +17,15 @@ async function register() {
       return;
     }
 
+    if (res.ok) {
+      document.getElementById("r-name").value = "";
+      document.getElementById("r-email").value = "";
+      document.getElementById("r-pass").value = "";
+      document.getElementById("r-org").value = "";
+
+      alert("Registered successfully. Please login.");
+    }
+
     alert("Registered successfully. Please login.");
   } catch (err) {
     console.error("Register error:", err);
