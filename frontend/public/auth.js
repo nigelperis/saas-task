@@ -1,12 +1,6 @@
-console.log("auth.js loaded");
-
-const API = "http://localhost:5000";
-
 async function register() {
-  console.log("Register clicked");
-
   try {
-    const res = await fetch(`${API}/auth/register`, {
+    const res = await fetch(`${CONFIG.API_URL}/auth/register`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -31,7 +25,7 @@ async function register() {
 
 async function login() {
   try {
-    const res = await fetch(`${API}/auth/login`, {
+    const res = await fetch(`${CONFIG.API_URL}/auth/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

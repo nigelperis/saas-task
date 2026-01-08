@@ -1,10 +1,9 @@
-const API = "http://localhost:5000";
 const token = localStorage.getItem("token");
 
 if (!token) window.location.href = "index.html";
 
 async function loadTasks() {
-  const res = await fetch(`${API}/tasks`, {
+  const res = await fetch(`${CONFIG.API_URL}/tasks`, {
     headers: { Authorization: `Bearer ${token}` },
   });
 
@@ -51,7 +50,7 @@ async function createTask() {
   const description = document.getElementById("description").value;
   const status = document.getElementById("status").value;
 
-  await fetch(`${API}/tasks`, {
+  await fetch(`${CONFIG.API_URL}/tasks`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -70,7 +69,7 @@ async function updateTask(id) {
   const description = document.getElementById(`desc-${id}`).value;
   const status = document.getElementById(`status-${id}`).value;
 
-  const res = await fetch(`${API}/tasks/${id}`, {
+  const res = await fetch(`${CONFIG.API_URL}/tasks/${id}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -88,7 +87,7 @@ async function updateTask(id) {
 }
 
 async function deleteTask(id) {
-  await fetch(`${API}/tasks/${id}`, {
+  await fetch(`${CONFIG.API_URL}/tasks/${id}`, {
     method: "DELETE",
     headers: { Authorization: `Bearer ${token}` },
   });
