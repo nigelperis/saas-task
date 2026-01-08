@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>SaaS Auth</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body>
+    <h2>Register</h2>
+
+    <form id="registerForm">
+      <input id="r-name" placeholder="Name" required />
+      <input id="r-email" placeholder="Email" required />
+      <input id="r-pass" type="password" placeholder="Password" required />
+      <input id="r-org" placeholder="Organization" required />
+      <button type="submit">Register</button>
+    </form>
+
+    <hr />
+
+    <h2>Login</h2>
+
+    <form id="loginForm">
+      <input id="l-email" placeholder="Email" required />
+      <input id="l-pass" type="password" placeholder="Password" required />
+      <button type="submit">Login</button>
+    </form>
+
+    <script src="auth.js"></script>
+
+    <script>
+      document
+        .getElementById("registerForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+          register();
+        });
+
+      document
+        .getElementById("loginForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+          login();
+        });
+    </script>
+  </body>
+</html>
