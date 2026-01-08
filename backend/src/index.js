@@ -15,13 +15,13 @@ app.use("/tasks", taskRoutes);
 
 mongoose
   .connect(process.env.MONGO_URI)
-  .then(() => console.log("DB connected"))
+  .then(() => console.log("MongoDB connected"))
   .catch((err) => console.error(err));
 
 app.get("/", (req, res) => {
-  res.json({ message: "SaaS API running" });
+  res.json({ message: "My Saas App" });
 });
 
-app.listen(5000, () => {
+app.listen(process.env.PORT, () => {
   console.log("Server running on port 5000");
 });
